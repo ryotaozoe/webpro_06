@@ -53,3 +53,51 @@ app.get("/janken", (req, res) => {
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
+
+app.get("/janken", (req, res) => {
+  let hand = req.query.hand;  // 人間の手
+  let win = Number(req.query.win); // 勝ち数
+  let total = Number(req.query.total); // 総ゲーム数
+  const num = Math.floor(Math.random() * 3 + 1); // CPUの手（1〜3）
+  
+  let cpu = ''; // CPUの手
+  if (num == 1) cpu = 'グー';
+  else if (num == 2) cpu = 'チョキ';
+  else cpu = 'パー';
+
+  // 勝敗の判定
+  let judgement = '';
+  if (hand === 'グー') {
+    if (cpu === 'グー') judgement = '引き分け';
+    else if (cpu === 'チョキ') {
+      judgement = '勝ち';
+      win += 1;
+    } else judgement = '負け';
+  } else if (hand === 'チョキ') {
+    if (cpu === 'グー') judgement = '負け';
+    else if (cpu === 'チョキ') judgement = '引き分け';
+    else {
+      judgement = '勝ち';
+      win += 1;
+    }
+  } else if (hand === 'パー') {
+    if (cpu === 'グー') {
+      judgement = '勝ち';
+      win += 1;
+    } else if (cpu === 'チョキ') judgement = '負け';
+    else judgement = '引き分け';
+  }
+
+  // 総ゲーム数を更新
+  total += 1;
+
+  const display = {
+    your: hand,
+    cpu: cpu,
+    judgement: judgement,
+    win: win,
+    total: total
+  };
+
+  res.render('janken', display);
+});

@@ -101,3 +101,19 @@ app.get("/janken", (req, res) => {
 
   res.render('janken', display);
 });
+
+
+// 数字の足し算をする機能
+app.get("/add", (req, res) => {
+  let num1 = Number(req.query.num1);
+  let num2 = Number(req.query.num2);
+  let sum = num1 + num2;
+  res.send(`The sum of ${num1} and ${num2} is ${sum}`);
+});
+
+// 今日の日付を返す機能
+app.get("/today", (req, res) => {
+  let today = new Date();
+  let date = today.toISOString().split('T')[0]; // YYYY-MM-DD形式で表示
+  res.send(`Today's date is ${date}`);
+});

@@ -83,3 +83,17 @@ flowchart TD;
     end3["終了"];
     start3 --> get_today --> format_date --> send_response --> end3;
 ```
+
+四則演算
+```mermaid
+flowchart TD;
+
+    start4["開始"]
+    get_params4["num1とnum2とopを取得"]
+    convert4["数値に変換"]
+    calculate4["opに基づいて四則演算を実行"]
+    display_sum4["結果を表示"]
+    end4["終了"]
+    
+    start4 --> get_params4 --> convert4 --> calculate4 --> display_sum4 --> end4
+```

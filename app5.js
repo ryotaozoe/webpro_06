@@ -103,23 +103,25 @@ app.listen(8080, () => console.log("Example app listening on port 8080!"));
 
 // 四則演算機能
 app.get("/calc", (req, res) => {
-  let num1 = req.query.num1 ? Number(req.query.num1) : undefined;
-  let num2 = req.query.num2 ? Number(req.query.num2) : undefined;
-  let op = req.query.op; // 演算子 (+, -, *, /)
-  let result = undefined;
+  let num1 = req.query.num1 ? Number(req.query.num1) : undefined; // 数字1
+  let num2 = req.query.num2 ? Number(req.query.num2) : undefined; // 数字2
+  let op = req.query.op ? decodeURIComponent(req.query.op) : undefined; // 演算子
+  let result = undefined; // 結果を格納する変数
 
   if (!isNaN(num1) && !isNaN(num2)) {
     switch (op) {
-      case '+': result = num1 + num2; break;
-      case '-': result = num1 - num2; break;
-      case '*': result = num1 * num2; break;
+      case '+': result = num1 + num2; break; // 足し算
+      case '-': result = num1 - num2; break; // 引き算
+      case '*': result = num1 * num2; break; // 掛け算
       case '/': 
         result = num2 !== 0 ? num1 / num2 : "Error: Division by zero"; 
-        break;
+        break; // 割り算（ゼロ割りチェックあり）
       default: 
-        result = "Invalid operator";
+        result = "Invalid operator"; // 無効な演算子
     }
+  } else {
+    result = "Invalid input"; // 数字が入力されていない場合
   }
 
-  res.render("calc", { num1, num2, op, result });
+  res.render("calc", { num1, num2, op, result }); // レンダリング時に結果を送信
 });

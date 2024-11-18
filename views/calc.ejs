@@ -6,11 +6,23 @@
   <title>Calculator</title>
 </head>
 <body>
-  <h1>Calculator</h1>
-  <% if (num1 !== undefined && num2 !== undefined && op) { %>
-    <p>Result: <%= num1 %> <%= op %> <%= num2 %> = <%= result %></p>
-  <% } else { %>
-    <p>Please provide valid inputs for calculation!</p>
+  <h1>四則演算</h1>
+  <form action="/calc" method="get">
+    <label for="num1">数値1:</label>
+    <input type="number" name="num1" id="num1" required>
+    <br>
+    <label for="op">演算子 (+, -, *, /):</label>
+    <input type="text" name="op" id="op" required>
+    <br>
+    <label for="num2">数値2:</label>
+    <input type="number" name="num2" id="num2" required>
+    <br>
+    <button type="submit">計算</button>
+  </form>
+
+  <% if (typeof result !== "undefined") { %>
+    <h2>計算結果</h2>
+    <p><%= num1 %> <%= op %> <%= num2 %> = <%= result %></p>
   <% } %>
 </body>
 </html>

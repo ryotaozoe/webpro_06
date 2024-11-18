@@ -4,6 +4,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 
+// Hello World 機能
 app.get("/hello1", (req, res) => {
   const message1 = "Hello world";
   const message2 = "Bon jour";
@@ -14,10 +15,12 @@ app.get("/hello2", (req, res) => {
   res.render('show', { greet1:"Hello world", greet2:"Bon jour"});
 });
 
+// アイコン表示機能
 app.get("/icon", (req, res) => {
   res.render('icon', { filename:"./public/Apple_logo_black.svg", alt:"Apple Logo"});
 });
 
+// 運勢機能
 app.get("/luck", (req, res) => {
   const num = Math.floor( Math.random() * 6 + 1 );
   let luck = '';
@@ -27,39 +30,13 @@ app.get("/luck", (req, res) => {
   res.render( 'luck', {number:num, luck:luck} );
 });
 
-app.get("/janken", (req, res) => {
-  let hand = req.query.hand;
-  let win = Number( req.query.win );
-  let total = Number( req.query.total );
-  console.log( {hand, win, total});
-  const num = Math.floor( Math.random() * 3 + 1 );
-  let cpu = '';
-  if( num==1 ) cpu = 'グー';
-  else if( num==2 ) cpu = 'チョキ';
-  else cpu = 'パー';
-  // ここに勝敗の判定を入れる
-  // 今はダミーで人間の勝ちにしておく
-  let judgement = '勝ち';
-  win += 1;
-  total += 1;
-  const display = {
-    your: hand,
-    cpu: cpu,
-    judgement: judgement,
-    win: win,
-    total: total
-  }
-  res.render( 'janken', display );
-});
-
-app.listen(8080, () => console.log("Example app listening on port 8080!"));
-
+// じゃんけん機能
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;  // 人間の手
   let win = Number(req.query.win); // 勝ち数
   let total = Number(req.query.total); // 総ゲーム数
   const num = Math.floor(Math.random() * 3 + 1); // CPUの手（1〜3）
-  
+
   let cpu = ''; // CPUの手
   if (num == 1) cpu = 'グー';
   else if (num == 2) cpu = 'チョキ';
@@ -102,18 +79,24 @@ app.get("/janken", (req, res) => {
   res.render('janken', display);
 });
 
-
-// 数字の足し算をする機能
+// 足し算機能
 app.get("/add", (req, res) => {
-  let num1 = Number(req.query.num1);
-  let num2 = Number(req.query.num2);
-  let sum = num1 + num2;
-  res.send(`The sum of ${num1} and ${num2} is ${sum}`);
+  let num1 = req.query.num1 ? Number(req.query.num1) : undefined;
+  let num2 = req.query.num2 ? Number(req.query.num2) : undefined;
+  let sum = undefined;
+
+  if (!isNaN(num1) && !isNaN(num2)) {
+    sum = num1 + num2;
+  }
+
+  res.render("add", { num1, num2, sum });
 });
 
 // 今日の日付を返す機能
 app.get("/today", (req, res) => {
   let today = new Date();
-  let date = today.toISOString().split('T')[0]; // YYYY-MM-DD形式で表示
-  res.send(`Today's date is ${date}`);
+  let date = today.toISOString().split('T')[0]; // YYYY-MM-DD形式
+  res.render("today", { date });
 });
+
+app.listen(8080, () => console.log("Example app listening on port 8080!"));

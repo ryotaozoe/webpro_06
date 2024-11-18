@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>今日の日付</title>
+</head>
+<body>
+  <h1>今日の日付</h1>
+  <form action="/today" method="get">
+    <label for="ask">今日は何日？</label>
+    <input type="text" id="ask" name="ask" value="何日？" readonly>
+    <button type="submit">確認</button>
+  </form>
+  <% if (date) { %>
+    <h2>今日の日付は: <%= date %></h2>
+  <% } %>
+</body>
+</html>

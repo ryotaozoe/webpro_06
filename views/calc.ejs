@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+</head>
+<body>
+  <h1>Calculator</h1>
+  <% if (num1 !== undefined && num2 !== undefined && op) { %>
+    <p>Result: <%= num1 %> <%= op %> <%= num2 %> = <%= result %></p>
+  <% } else { %>
+    <p>Please provide valid inputs for calculation!</p>
+  <% } %>
+</body>
+</html>

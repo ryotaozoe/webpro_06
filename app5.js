@@ -100,3 +100,26 @@ app.get("/today", (req, res) => {
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
+
+// 四則演算機能
+app.get("/calc", (req, res) => {
+  let num1 = req.query.num1 ? Number(req.query.num1) : undefined;
+  let num2 = req.query.num2 ? Number(req.query.num2) : undefined;
+  let op = req.query.op; // 演算子 (+, -, *, /)
+  let result = undefined;
+
+  if (!isNaN(num1) && !isNaN(num2)) {
+    switch (op) {
+      case '+': result = num1 + num2; break;
+      case '-': result = num1 - num2; break;
+      case '*': result = num1 * num2; break;
+      case '/': 
+        result = num2 !== 0 ? num1 / num2 : "Error: Division by zero"; 
+        break;
+      default: 
+        result = "Invalid operator";
+    }
+  }
+
+  res.render("calc", { num1, num2, op, result });
+});

@@ -2,6 +2,53 @@
 
 ## このプログラムについて
 
+概要
+
+このプログラムは、簡単なブラウザアプリケーションを提供し、以下のような複数の機能を実現する。
+
+じゃんけんゲーム: プレイヤーとCPUがじゃんけんを行い、勝敗を判定する。
+
+足し算機能: 入力された2つの数値を加算して結果を表示する。
+
+日付表示: 現在の日付を取得してフォーマットされた形で表示する。
+
+四則演算: 入力された数値と演算子に基づいて計算結果を返す。
+
+(1) 起動方法や編集したファイルをGitで管理する
+起動方法
+```mermaid
+flowchart TD;
+
+start1["開始"];
+clone["cd webpro_06でファイル指定"];
+start_server["node app5.js で開発サーバーを起動"];
+access["ブラウザにアクセス"];
+access1["[http://localhost:8080/add](http://localhost:8080/add)"];
+access2["http://localhost:8080/calc"];
+access3["http://localhost:8080/today"];
+access4["http://localhost:8080/janken"];
+
+end1["終了"];
+
+
+start1 --> clone --> start_server --> access;
+
+access -->|足し算| access1;
+access -->|四則演算| access2;
+access -->|日付表示| access3;
+access -->|じゃんけん| access4;
+
+access1 --> end1;
+access2 --> end1;
+access3 --> end1;
+access4 --> end1;
+
+```
+
+ファイルの管理方法
+
+
+
 ## ファイル一覧
 
 ファイル名 | 説明
@@ -35,7 +82,7 @@ if -->|no| loose
 loose --> end1
 ```
 
-app5.js
+## app5.js
 じゃんけんの勝ち負け判定
 ```mermaid
 flowchart TD;

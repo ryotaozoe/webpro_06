@@ -35,7 +35,14 @@ app.get("/janken", (req, res) => {
   let hand = req.query.hand;  // 人間の手
   let win = Number(req.query.win) || 0;// 勝ち数
   let total = Number(req.query.total) || 0; // 総ゲーム数
+
+  // 最初のゲームの場合、totalが0のままだと次回以降に影響を与えるので、totalは1に設定
+  if (hand === undefined) {
+    total = 0;  // 最初のリクエストではゲームを開始しない
+  }
+
   const num = Math.floor(Math.random() * 3 + 1); // CPUの手（1〜3）
+
 
   let cpu = ''; // CPUの手
   if (num == 1) cpu = 'グー';

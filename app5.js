@@ -33,8 +33,8 @@ app.get("/luck", (req, res) => {
 // じゃんけん機能
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;  // 人間の手
-  let win = Number(req.query.win); // 勝ち数
-  let total = Number(req.query.total); // 総ゲーム数
+  let win = Number(req.query.win) || 0;// 勝ち数
+  let total = Number(req.query.total) || 0; // 総ゲーム数
   const num = Math.floor(Math.random() * 3 + 1); // CPUの手（1〜3）
 
   let cpu = ''; // CPUの手

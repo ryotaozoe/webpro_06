@@ -37,7 +37,8 @@
 ファイル名 | 説明
 -|-
 app5.js | プログラム本体
-views/janken.ejs | じゃんけんの開始画面
+public/janken.html | じゃんけんの開始画面(静的)
+views/janken.ejs | じゃんけんの開始画面(動的)
 views/today.ejs | 日付表示の開始画面
 views/add.ejs | 足し算の開始画面
 views/calc.ejs | 四則演算の開始画面

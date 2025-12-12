@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>支出の編集</title>
+</head>
+<body>
+    <h1>支出の編集</h1>
+    <form action="/household/update/<%= data.id %>" method="POST">
+        <div><label>日付（例: 20251205）：</label><input type="number" name="date" value="<%= data.date %>"></div>
+        <div><label>カテゴリ：</label><input type="text" name="category" value="<%= data.category %>" required></div>
+        <div><label>品目：</label><input type="text" name="item" value="<%= data.item %>" required></div>
+        <div><label>金額：</label><input type="number" name="amount" value="<%= data.amount %>"></div>
+        <br>
+        <input type="submit" value="更新する">
+    </form>
+    <hr>
+    <a href="/household">一覧に戻る</a>
+</body>
+</html>

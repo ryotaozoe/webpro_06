@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>文献詳細</title>
+</head>
+<body>
+    <h1>文献の詳細</h1>
+    <ul>
+        <li><b>ID：</b> <%= data.id %></li>
+        <li><b>著者名：</b> <%= data.author %></li>
+        <li><b>書籍名：</b> <%= data.title %></li>
+        <li><b>発行年：</b> <%= data.year %></li>
+        <li><b>重要度：</b> <%= data.importance %></li>
+    </ul>
+    <hr>
+    <p>
+        <a href="/references/edit/<%= data.id %>">編集する</a> | 
+        <a href="/references/delete/<%= data.id %>">削除する</a>
+    </p>
+    <a href="/references">一覧に戻る</a>
+</body>
+</html>

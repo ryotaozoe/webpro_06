@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>課題の新規追加</title>
+</head>
+<body>
+    <h1>課題の新規追加</h1>
+    <form action="/tasks/create" method="POST">
+        <div>
+            <label>科目名：</label>
+            <input type="text" name="subject" required>
+        </div>
+        <div>
+            <label>課題内容：</label>
+            <input type="text" name="title" required>
+        </div>
+        <div>
+            <label>期限（例: 20251210）：</label>
+            <input type="number" name="deadline">
+        </div>
+        <div>
+            <label>予想時間（分）：</label>
+            <input type="number" name="time">
+        </div>
+        <br>
+        <input type="submit" value="追加する">
+    </form>
+    <hr>
+    <a href="/tasks">一覧に戻る</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>支出の詳細</title>
+</head>
+<body>
+    <h1>支出の詳細</h1>
+    <ul>
+        <li><b>ID：</b> <%= data.id %></li>
+        <li><b>日付：</b> <%= data.date %></li>
+        <li><b>カテゴリ：</b> <%= data.category %></li>
+        <li><b>品目：</b> <%= data.item %></li>
+        <li><b>金額：</b> <%= data.amount %>円</li>
+    </ul>
+    <hr>
+    <p>
+        <a href="/household/edit/<%= data.id %>">編集する</a> | 
+        <a href="/household/delete/<%= data.id %>">削除する</a>
+    </p>
+    <a href="/household">一覧に戻る</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>家計簿</title>
+</head>
+<body>
+    <h1>家計簿一覧</h1>
+    <a href="/household/create">新規追加</a>
+    <hr>
+    <table border="1">
+        <tr>
+            <th>ID</th><th>日付</th><th>カテゴリ</th><th>品目</th><th>金額(円)</th><th>操作</th>
+        </tr>
+        <% for (let row of data) { %>
+        <tr>
+            <td><%= row.id %></td>
+            <td><%= row.date %></td>
+            <td><%= row.category %></td>
+            <td><%= row.item %></td>
+            <td><%= row.amount %></td>
+            <td><a href="/household/<%= row.id %>">詳細</a></td>
+        </tr>
+        <% } %>
+    </table>
+</body>
+</html>

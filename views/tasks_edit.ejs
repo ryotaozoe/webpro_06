@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>課題の編集</title>
+</head>
+<body>
+    <h1>課題の編集</h1>
+    <form action="/tasks/update/<%= data.id %>" method="POST">
+        <div>
+            <label>科目名：</label>
+            <input type="text" name="subject" value="<%= data.subject %>" required>
+        </div>
+        <div>
+            <label>課題内容：</label>
+            <input type="text" name="title" value="<%= data.title %>" required>
+        </div>
+        <div>
+            <label>期限：</label>
+            <input type="number" name="deadline" value="<%= data.deadline %>">
+        </div>
+        <div>
+            <label>予想時間（分）：</label>
+            <input type="number" name="time" value="<%= data.time %>">
+        </div>
+        <br>
+        <input type="submit" value="更新する">
+    </form>
+    <hr>
+    <a href="/tasks">一覧に戻る</a>
+</body>
+</html>

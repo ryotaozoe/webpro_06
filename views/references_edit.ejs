@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>文献の編集</title>
+</head>
+<body>
+    <h1>文献の編集</h1>
+    <form action="/references/update/<%= data.id %>" method="POST">
+        <div><label>著者名：</label><input type="text" name="author" value="<%= data.author %>" required></div>
+        <div><label>書籍名：</label><input type="text" name="title" value="<%= data.title %>" required></div>
+        <div><label>発行年：</label><input type="number" name="year" value="<%= data.year %>"></div>
+        <div><label>重要度（1-5）：</label><input type="number" name="importance" value="<%= data.importance %>"></div>
+        <br>
+        <input type="submit" value="更新する">
+    </form>
+    <hr>
+    <a href="/references">一覧に戻る</a>
+</body>
+</html>s

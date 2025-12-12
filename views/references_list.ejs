@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>参考文献管理</title>
+</head>
+<body>
+    <h1>参考文献一覧</h1>
+    <a href="/references/create">新規追加</a>
+    <hr>
+    <table border="1">
+        <tr>
+            <th>ID</th><th>著者名</th><th>書籍名</th><th>発行年</th><th>重要度</th><th>操作</th>
+        </tr>
+        <% for (let row of data) { %>
+        <tr>
+            <td><%= row.id %></td>
+            <td><%= row.author %></td>
+            <td><%= row.title %></td>
+            <td><%= row.year %></td>
+            <td><%= row.importance %></td>
+            <td><a href="/references/<%= row.id %>">詳細</a></td>
+        </tr>
+        <% } %>
+    </table>
+</body>
+</html>

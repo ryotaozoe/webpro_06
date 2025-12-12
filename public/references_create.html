@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>参考文献の追加</title>
+</head>
+<body>
+    <h1>参考文献の追加</h1>
+    <form action="/references/create" method="POST">
+        <div><label>著者名：</label><input type="text" name="author" required></div>
+        <div><label>書籍名：</label><input type="text" name="title" required></div>
+        <div><label>発行年：</label><input type="number" name="year"></div>
+        <div><label>重要度（1-5）：</label><input type="number" name="importance"></div>
+        <br>
+        <input type="submit" value="追加する">
+    </form>
+    <hr>
+    <a href="/references">一覧に戻る</a>
+</body>
+</html>

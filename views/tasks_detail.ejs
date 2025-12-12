@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>課題詳細</title>
+</head>
+<body>
+    <h1>課題の詳細</h1>
+    <ul>
+        <li><b>ID：</b> <%= data.id %></li>
+        <li><b>科目名：</b> <%= data.subject %></li>
+        <li><b>内容：</b> <%= data.title %></li>
+        <li><b>期限：</b> <%= data.deadline %></li>
+        <li><b>時間：</b> <%= data.time %>分</li>
+    </ul>
+    <hr>
+    <p>
+        <a href="/tasks/edit/<%= data.id %>">編集する</a> | 
+        <a href="/tasks/delete/<%= data.id %>">削除する</a>
+    </p>
+    <a href="/tasks">一覧に戻る</a>
+</body>
+</html>

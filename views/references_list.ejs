@@ -2,12 +2,31 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>参考文献管理</title>
+    <title>参考文献管理システム</title>
+    <link rel="stylesheet" href="/public/style.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
+    <nav>
+      <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="/">
+              <span itemprop="name">ホーム</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="/references">
+              <span itemprop="name">参考文献管理システム</span>
+          </a>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
     <h1>参考文献一覧</h1>
-    <a href="/references/create">新規追加</a>
+    <a href="/references/create" class="btn-square-slant">新規追加</a>
     <hr>
+    
     <table border="1">
         <tr>
             <th>ID</th><th>著者名</th><th>書籍名</th><th>発行年</th><th>重要度</th><th>操作</th>

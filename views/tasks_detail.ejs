@@ -2,22 +2,35 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>課題詳細</title>
+    <title>課題の詳細</title>
+    <link rel="stylesheet" href="/public/style.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
+    <nav>
+        <ol class="breadcrumb">
+            <li><a href="/">ホーム</a></li>
+            <li><a href="/tasks">授業課題管理システム</a></li>
+            <li>詳細</li>
+        </ol>
+    </nav>
+
     <h1>課題の詳細</h1>
+
     <ul>
-        <li><b>ID：</b> <%= data.id %></li>
-        <li><b>科目名：</b> <%= data.subject %></li>
-        <li><b>内容：</b> <%= data.title %></li>
-        <li><b>期限：</b> <%= data.deadline %></li>
-        <li><b>時間：</b> <%= data.time %>分</li>
+        <li><b>ID : </b> <%= data.id %></li>
+        <li><b>科目名 : </b> <%= data.subject %></li>
+        <li><b>内容 : </b> <%= data.title %></li>
+        <li><b>期限 : </b> <%= data.deadline %></li>
+        <li><b>予想時間 : </b> <%= data.time %>分</li>
     </ul>
+
     <hr>
-    <p>
-        <a href="/tasks/edit/<%= data.id %>">編集する</a> | 
-        <a href="/tasks/delete/<%= data.id %>">削除する</a>
-    </p>
-    <a href="/tasks">一覧に戻る</a>
+    
+    <div style="margin-top: 20px;">
+        <a href="/tasks/edit/<%= data.id %>" class="btn-sm btn-edit">編集する</a>
+        <a href="/tasks/delete/<%= data.id %>" class="btn-sm btn-delete" onclick="return confirm('本当に削除しますか？');">削除する</a>
+        <a href="/tasks" class="btn-sm btn-secondary">一覧に戻る</a>
+    </div>
 </body>
 </html>

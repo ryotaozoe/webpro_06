@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>文献の編集</title>
+    <title>文献の追加</title>
     <link rel="stylesheet" href="/public/style.css">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
@@ -11,27 +11,27 @@
         <ol class="breadcrumb">
             <li><a href="/">ホーム</a></li>
             <li><a href="/references">参考文献管理システム</a></li>
-            <li>編集</li>
+            <li>新規追加</li>
         </ol>
     </nav>
 
-    <h1>文献の編集</h1>
+    <h1>文献の追加</h1>
 
-    <form action="/references/update/<%= data.id %>" method="post">
+    <form action="/references/create" method="post">
         
         <label>著者名</label>
-        <input type="text" name="author" value="<%= data.author %>" required>
+        <input type="text" name="author" required>
 
         <label>書籍名</label>
-        <input type="text" name="title" value="<%= data.title %>">
+        <input type="text" name="title">
 
         <label>発行年</label>
-        <input type="number" name="year" value="<%= data.year %>">
+        <input type="number" name="year">
 
         <label>重要度</label>
-        <input type="number" name="importance" value="<%= data.importance %>">
+        <input type="number" name="importance">
 
-        <button type="submit" class="btn-square-slant" style="border:none; cursor:pointer;">更新する</button>
+        <button type="submit" class="btn-square-slant" style="border:none; cursor:pointer;">追加する</button>
     </form>
 
     <br>

@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>課題の編集</title>
+    <title>課題の追加</title>
     <link rel="stylesheet" href="/public/style.css">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
@@ -11,27 +11,27 @@
         <ol class="breadcrumb">
             <li><a href="/">ホーム</a></li>
             <li><a href="/tasks">授業課題管理システム</a></li>
-            <li>編集</li>
+            <li>新規追加</li>
         </ol>
     </nav>
 
-    <h1>課題の編集</h1>
+    <h1>課題の追加</h1>
 
-    <form action="/tasks/update/<%= data.id %>" method="post">
+    <form action="/tasks/create" method="post">
         
         <label>科目名</label>
-        <input type="text" name="subject" value="<%= data.subject %>" required>
+        <input type="text" name="subject" required>
 
         <label>内容</label>
-        <input type="text" name="title" value="<%= data.title %>">
+        <input type="text" name="title">
 
-        <label>期限</label>
-        <input type="number" name="deadline" value="<%= data.deadline %>">
+        <label>期限 (例: 20251212)</label>
+        <input type="number" name="deadline">
 
         <label>予想時間 (分)</label>
-        <input type="number" name="time" value="<%= data.time %>">
+        <input type="number" name="time">
 
-        <button type="submit" class="btn-square-slant" style="border:none; cursor:pointer;">更新する</button>
+        <button type="submit" class="btn-square-slant" style="border:none; cursor:pointer;">追加する</button>
     </form>
 
     <br>

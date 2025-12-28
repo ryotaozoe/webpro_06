@@ -1,0 +1,198 @@
+body {
+    background-color: #f9f9f9;
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+/* パンくずリスト */
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+.breadcrumb li:not(:first-child)::before {
+    content: ">";
+    margin: 0 10px;
+    color: #999;
+}
+.breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* リストデザイン */
+ul:not(.menu-list), ol:not(.breadcrumb) {
+  color: #668ad8;
+  border: dashed 2px #668ad8;
+  background: #f1f8ff;
+  padding: 0.5em 0.5em 0.5em 2em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+ul li, ol li {
+  line-height: 1.5;
+  padding: 0.5em 0;
+}
+
+/* 見出し */
+h1 {
+  position: relative;
+  background: #f1f8ff;
+  padding: 0.25em 0.5em;
+  border-left: solid 2em #5c9ee7;
+  margin-bottom: 20px;
+}
+h1:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f303";
+  position: absolute;
+  padding: 0em;
+  color: white;
+  font-weight: 900;
+  left: -1.35em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* システム一覧 */
+.system-link {
+  position: relative;
+  padding-left: 1.5em;
+  line-height: 1.4;
+  text-decoration: none;
+  color: #000;
+  display: inline-block;
+}
+.system-link:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f075";
+  font-weight: 900;
+  position: absolute;
+  font-size: 1em;
+  left: 0;
+  top: 0;
+  color: #5ab9ff;
+}
+
+/* 表のデザイン */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: dashed 2px #668ad8;
+  background: #f1f8ff;
+  border-radius: 5px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+th {
+  background: #668ad8;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+td {
+  padding: 10px;
+  border-bottom: 1px dashed #abc4ee;
+  color: #444;
+}
+tr:last-child td {
+  border-bottom: none;
+}
+td a {
+  color: #0056b3;
+  font-weight: bold;
+  text-decoration: none;
+}
+td a:hover {
+  text-decoration: underline;
+  color: #d9534f;
+} 
+
+/*  新規追加ボタン */
+.btn-square-slant {
+  display: inline-block;
+  position: relative;
+  padding: 0.5em 1.4em;
+  text-decoration: none;
+  background: #668ad8;
+  color: #FFF !important;
+  border-bottom: solid 5px #36528c;
+  border-right: solid 5px #5375bd;
+  margin-bottom: 20px;
+}
+.btn-square-slant:before {  
+  content: " ";
+  position: absolute;
+  bottom: -5px;
+  left: -1px;
+  width: 0;
+  height: 0;
+  border-width: 0 6px 6px 0px;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-color: #FFF;
+}
+.btn-square-slant:after {  
+  content: " ";
+  position: absolute;
+  top: -1px;
+  right: -5px;
+  width: 0;
+  height: 0;
+  border-width: 0px 6px 6px 0px;
+  border-style: solid;
+  border-color: #FFF;
+  border-bottom-color: transparent;
+}
+.btn-square-slant:active {
+  border: none;
+  transform: translate(6px,6px);
+}
+.btn-square-slant:active:after, .btn-square-slant:active:before {
+  content: none;
+}
+/* フォーム */
+input[type="text"], input[type="number"], input[type="date"], select {
+    width: 100%;             /* 横幅いっぱいに */
+    padding: 10px;           /* 中の余白 */
+    margin: 5px 0 20px 0;    /* 周りの余白 */
+    border: 2px solid #ddd;  /* 枠線 */
+    border-radius: 4px;      /* 角丸 */
+    box-sizing: border-box;  /* ズレ防止 */
+}
+
+/* 小さいボタン */
+.btn-sm {
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+/* 編集ボタン */
+.btn-edit {
+    background: #28a745;
+    color: white;
+}
+/* 削除ボタン */
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+/* 戻るボタン */
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}

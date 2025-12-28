@@ -6,6 +6,12 @@ const app = express();
 app.set("view engine", "ejs");
 app.use("/public", express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
+// --- ホーム画面 (Top Page) ---
+app.get("/", (req, res) => {
+    res.render("index");
+});
+
+
 
 let station2 = [
     { id: 1, name: "東京", passengers: 425231, distance: 0.0 },
@@ -24,68 +30,53 @@ let tasks = [
 ];
 
 app.get("/tasks", (req, res) => {
-    // tasks_list.ejs を表示する設定
     res.render("tasks_list", { data: tasks });
 });
 
-// --- 追加機能 (Create) ---
 
-// 2. 新規追加画面の表示 (GET)
-// 「新規追加」リンクをクリックしたときに、HTMLファイルを送る
+//  新規追加画面
 app.get("/tasks/create", (req, res) => {
-    res.redirect("/public/tasks_create.html");
+    res.render("tasks_create");
 });
 
-// 3. 追加処理の実行 (POST)
-// フォームから送られてきたデータを受け取って、配列に追加する
+// 追加処理
 app.post("/tasks/create", (req, res) => {
-    // 新しいIDを決める（現在のデータの最大ID + 1）
-    // データが空ならIDは1にする
+
     let newId = 1;
     if (tasks.length > 0) {
         newId = tasks[tasks.length - 1].id + 1;
     }
-
-    // フォームのデータをまとめる
     let newTask = {
         id: newId,
         subject: req.body.subject,
         title: req.body.title,
-        deadline: Number(req.body.deadline), // 数値に変換
-        time: Number(req.body.time)          // 数値に変換
+        deadline: Number(req.body.deadline), 
+        time: Number(req.body.time)          
     };
-
-    // 配列に追加
     tasks.push(newTask);
-
-    // 一覧画面に戻る
     res.redirect("/tasks");
 });
 
 
-// --- 詳細表示機能 (Read - Detail) ---
+// 詳細表示
 app.get("/tasks/:id", (req, res) => {
     const id = req.params.id;
-    // 配列から、URLのIDと同じIDを持つデータを探す
     const task = tasks.find((item) => item.id === parseInt(id));
 
     if (task) {
-        // 見つかったら表示用のファイルにデータを渡す
         res.render("tasks_detail", { data: task });
     } else {
         res.send("その課題は見つかりません");
     }
-});// --- 削除機能 (Delete) ---
+});
+// 削除機能 
 app.get("/tasks/delete/:id", (req, res) => {
     const id = req.params.id;
-    // 指定されたID以外のデータだけを残す（＝指定IDを削除）
     tasks = tasks.filter((item) => item.id !== parseInt(id));
     res.redirect("/tasks");
 });
 
-// --- 編集機能 ---
-
-//  編集画面の表示 
+// 編集
 app.get("/tasks/edit/:id", (req, res) => {
     const id = req.params.id;
     const task = tasks.find((item) => item.id === parseInt(id));
@@ -97,7 +88,7 @@ app.get("/tasks/edit/:id", (req, res) => {
     }
 });
 
-//  更新処理の実行 
+//  更新
 app.post("/tasks/update/:id", (req, res) => {
     const id = req.params.id;
     // 更新するデータを探す
@@ -114,23 +105,21 @@ app.post("/tasks/update/:id", (req, res) => {
 });
 
 
-// --- システム2：参考文献管理システム ---
-
-// データ（初期データ）
+// 参考文献管理
+// データ
 let references = [
     { id: 1, author: "千葉太郎", title: "Web技術入門", year: 2023, importance: 5 },
     { id: 2, author: "津田沼花子", title: "現代デザイン論", year: 2024, importance: 3 }
 ];
 
-// 1. 一覧表示 (Read)
+// 一覧表示
 app.get("/references", (req, res) => {
     res.render("references_list", { data: references });
 });
 
-// ★★★ ここに移動！「詳細」より先に書くことで、吸い込まれるのを防ぎます ★★★
-// 3. 新規追加 (Create)
+// 新規追加
 app.get("/references/create", (req, res) => {
-    res.redirect("/public/references_create.html");
+    res.render("references_create");
 });
 
 app.post("/references/create", (req, res) => {
@@ -148,11 +137,7 @@ app.post("/references/create", (req, res) => {
     references.push(newRef);
     res.redirect("/references");
 });
-// ★★★ 移動ここまで ★★★
-
-
-// 2. 詳細表示 (Read - Detail)
-// ※これは create のチェックが終わった後に配置する
+// 詳細表示 
 app.get("/references/:id", (req, res) => {
     const id = req.params.id;
     const ref = references.find((item) => item.id === parseInt(id));
@@ -164,7 +149,7 @@ app.get("/references/:id", (req, res) => {
 });
 
 
-// 4. 編集機能 (Update)
+//  編集
 app.get("/references/edit/:id", (req, res) => {
     const id = req.params.id;
     const ref = references.find((item) => item.id === parseInt(id));
@@ -187,13 +172,84 @@ app.post("/references/update/:id", (req, res) => {
     res.redirect("/references");
 });
 
-// 5. 削除機能 (Delete)
+//  削除
 app.get("/references/delete/:id", (req, res) => {
     const id = req.params.id;
     references = references.filter((item) => item.id !== parseInt(id));
     res.redirect("/references");
 });
 
+// 家計簿
+// データ
+let household = [
+    { id: 1, category: "食費", item: "コンビニ弁当", amount: 550, date: 20251201 },
+    { id: 2, category: "交通費", item: "バス代", amount: 220, date: 20251202 }
+];
 
+// 一覧表示
+app.get("/household", (req, res) => {
+    res.render("household_list", { data: household });
+});
+// 新規追加
+app.get("/household/create", (req, res) => {
+    res.render("household_create");
+});
+
+app.post("/household/create", (req, res) => {
+    let newId = 1;
+    if (household.length > 0) {
+        newId = household[household.length - 1].id + 1;
+    }
+    let newData = {
+        id: newId,
+        category: req.body.category,
+        item: req.body.item,
+        amount: Number(req.body.amount),
+        date: Number(req.body.date)
+    };
+    household.push(newData);
+    res.redirect("/household");
+});
+
+//  詳細
+app.get("/household/:id", (req, res) => {
+    const id = req.params.id;
+    const data = household.find((item) => item.id === parseInt(id));
+    if (data) {
+        res.render("household_detail", { data: data });
+    } else {
+        res.send("そのデータは見つかりません");
+    }
+});
+
+// 編集
+app.get("/household/edit/:id", (req, res) => {
+    const id = req.params.id;
+    const data = household.find((item) => item.id === parseInt(id));
+    if (data) {
+        res.render("household_edit", { data: data });
+    } else {
+        res.send("そのデータは見つかりません");
+    }
+});
+
+app.post("/household/update/:id", (req, res) => {
+    const id = req.params.id;
+    const data = household.find((item) => item.id === parseInt(id));
+    if (data) {
+        data.category = req.body.category;
+        data.item = req.body.item;
+        data.amount = Number(req.body.amount);
+        data.date = Number(req.body.date);
+    }
+    res.redirect("/household");
+});
+
+//　削除
+app.get("/household/delete/:id", (req, res) => {
+    const id = req.params.id;
+    household = household.filter((item) => item.id !== parseInt(id));
+    res.redirect("/household");
+});
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

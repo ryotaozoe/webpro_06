@@ -2,22 +2,35 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>文献詳細</title>
+    <title>文献の詳細</title>
+    <link rel="stylesheet" href="/public/style.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
+    <nav>
+        <ol class="breadcrumb">
+            <li><a href="/">ホーム</a></li>
+            <li><a href="/references">参考文献管理システム</a></li>
+            <li>詳細</li>
+        </ol>
+    </nav>
+
     <h1>文献の詳細</h1>
+
     <ul>
-        <li><b>ID：</b> <%= data.id %></li>
-        <li><b>著者名：</b> <%= data.author %></li>
-        <li><b>書籍名：</b> <%= data.title %></li>
-        <li><b>発行年：</b> <%= data.year %></li>
-        <li><b>重要度：</b> <%= data.importance %></li>
+        <li><b>ID : </b> <%= data.id %></li>
+        <li><b>著者名 : </b> <%= data.author %></li>
+        <li><b>書籍名 : </b> <%= data.title %></li>
+        <li><b>発行年 : </b> <%= data.year %></li>
+        <li><b>重要度 : </b> <%= data.importance %></li>
     </ul>
+
     <hr>
-    <p>
-        <a href="/references/edit/<%= data.id %>">編集する</a> | 
-        <a href="/references/delete/<%= data.id %>">削除する</a>
-    </p>
-    <a href="/references">一覧に戻る</a>
+    
+    <div style="margin-top: 20px;">
+        <a href="/references/edit/<%= data.id %>" class="btn-sm btn-edit">編集する</a>
+        <a href="/references/delete/<%= data.id %>" class="btn-sm btn-delete" onclick="return confirm('本当に削除しますか？');">削除する</a>
+        <a href="/references" class="btn-sm btn-secondary">一覧に戻る</a>
+    </div>
 </body>
 </html>
